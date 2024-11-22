@@ -1,12 +1,11 @@
 package com.caocao.SpringEcom.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,10 +23,38 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String brand;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYYY")
     private Date releaseDate;
     private String category;
     private boolean productAvailable;
     private int stockQuantity;
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
 
 
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+    public byte[] getImageData() {
+        return this.imageData;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
